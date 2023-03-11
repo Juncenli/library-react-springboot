@@ -3,6 +3,7 @@ import BookModel from '../../models/BookModel';
 import { Pagination } from '../Utils/Pagination';
 import { SpinnerLoading } from '../Utils/SpinnerLoading';
 import { SearchBook } from './components/SearchBook';
+import React from 'react';
 
 export const SearchBooksPage = () => {
 

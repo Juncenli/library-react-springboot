@@ -1,3 +1,5 @@
+import React from "react";
+
 export const Heros = () => {
     /*
         The hero section is typically a visually striking component that appears at the top of the homepage and often features a large image or video background, a headline, 
