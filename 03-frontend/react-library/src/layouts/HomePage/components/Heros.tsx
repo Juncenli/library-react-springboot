@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useOktaAuth } from "@okta/okta-react";
 
 export const Heros = () => {
     /*
         The hero section is typically a visually striking component that appears at the top of the homepage and often features a large image or video background, a headline, 
         and a call-to-action (CTA) button. The purpose of the hero section is to draw visitors' attention and provide a clear and concise message about the company, product, or service being promoted.
     */
+    const { authState } = useOktaAuth();
+
     return (
         <div>
             <div className='d-none d-lg-block'>
@@ -21,7 +24,12 @@ export const Heros = () => {
                                 Whether it is to learn a new skill or grow within one,
                                 we will be able to provide the top content for you!
                             </p>
-                            <Link className='btn main-color btn-lg text-white' to='/login'>Sign up</Link>
+                            {authState?.isAuthenticated ?
+                                <Link type='button' className='btn main-color btn-lg text-white'
+                                    to='search'>Explore Top Books </Link>
+                                :
+                                <Link className='btn main-color btn-lg text-white' to='/login'>Sign up</Link>
+                            }
                         </div>
                     </div>
                 </div>
@@ -57,7 +65,12 @@ export const Heros = () => {
                                 Whether it is to learn a new skill or grow within one,
                                 we will be able to provide the top content for you!
                             </p>
-                            <Link className='btn main-color btn-lg text-white' to='/login'>Sign up</Link>
+                            {authState?.isAuthenticated ?
+                                <Link type='button' className='btn main-color btn-lg text-white'
+                                    to='search'>Explore Top Books</Link>
+                                :
+                                <Link className='btn main-color btn-lg text-white' to='/login'>Sign up</Link>
+                            }
                         </div>
                     </div>
                     <div className='m-2'>
