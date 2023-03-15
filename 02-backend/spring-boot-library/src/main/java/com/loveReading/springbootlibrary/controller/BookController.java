@@ -44,6 +44,8 @@ public class BookController {
     @PutMapping("/secure/checkout")
     public Book checkoutBook (@RequestHeader(value = "Authorization") String token,
                               @RequestParam Long bookId) throws Exception {
+        // @RequestParam 注解用于获取 URL 查询字符串中的参数值，而其中的 bookId 表示参数的名称，即查询字符串中的键名，对应于前面提到的 bookId。
+        // 它是一个 Long 类型的参数，表示查询字符串中的值需要被转换为 Long 类型的数据。
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
         return bookService.checkoutBook(userEmail, bookId);
     }
