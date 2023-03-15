@@ -11,6 +11,7 @@ import { oktaConfig } from './lib/oktaConfig';
 import { OktaAuth } from '@okta/okta-auth-js';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import LoginWidget from './Auth/LoginWidget';
+import { ReviewListPage } from './layouts/BookCheckoutPage/ReviewListPage/ReviewListPage';
 
 /* 
     React default port is http://localhost:3000 
@@ -70,6 +71,11 @@ export const App = () => {
             <Route path='/search'>
               <SearchBooksPage />
             </Route>
+
+            <Route path='/reviewlist/:bookId'>
+              <ReviewListPage />
+            </Route>
+
             {/* 在 React Router 中，:符号用于定义参数化路由参数，该参数可以在 URL 中具有不同的值。 */}
             <Route path='/checkout/:bookId'>
               <BookCheckoutPage />
