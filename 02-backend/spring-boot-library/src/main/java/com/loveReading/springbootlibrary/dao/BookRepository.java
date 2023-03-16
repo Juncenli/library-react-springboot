@@ -4,9 +4,13 @@ import com.loveReading.springbootlibrary.entity.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
-    // 创建了一个新的路径 http://localhost:8080/api/books
+import java.util.List;
+
+// 创建了一个新的路径 http://localhost:8080/api/books
     /*
 
         当你使用JpaRepository来定义数据访问接口时，Spring Boot会自动根据接口的命名规则创建对应的RESTful API。在你的例子中，BookRepository继承了JpaRepository，表示它是一个用于访问Book实体的数据访问接口。由于JpaRepository已经封装了许多基本的数据访问方法（如增删改查等），因此你不需要手动编写这些方法的实现。相反，Spring Boot会根据命名规则自动生成对应的RESTful API。
@@ -25,15 +29,29 @@ public interface BookRepository extends JpaRepository<Book, Long> {
         但是，即使没有控制器(Controller)，Spring Boot应用程序仍然可以启动，只要所有的依赖项都已经配置好并且应用程序的入口点(main方法)已经定义好即可。
      */
 
-     // Our Spring Boot backend uses Spring Data REST
-     // Spring Data REST provides pagination support out of the box
-     // By default, Spring Data REST returns: 20 elements
-     // We can customize this by passing in parameters -> "http://localhost:8080/api/books?page=1&size=10"
+    // Our Spring Boot backend uses Spring Data REST
+    // Spring Data REST provides pagination support out of the box
+    // By default, Spring Data REST returns: 20 elements
+    // We can customize this by passing in parameters -> "http://localhost:8080/api/books?page=1&size=10"
 
 
     // Build a new API： http://localhost:8080/api/books/search/findByTitleContaining{?title,page,size,sort}
     Page<Book> findByTitleContaining(@RequestParam("title") String title, Pageable pageable);
 
     Page<Book> findByCategory(@RequestParam("category") String category, Pageable pageable);
+
+    /*
+        在JPQL（Java Persistence Query Language）查询中，: 符号用于表示命名参数。命名参数用于将查询中的占位符与实际参数值关联起来。
+        这使得查询更具可读性，同时方便地替换实际参数值。
+        在这个示例中，:book_ids 是一个命名参数，它在查询中作为占位符（placeholders）出现：@Query("select o from Book o where id in :book_ids")
+
+        当执行此查询时，:book_ids 占位符将被替换为实际参数值，该值由调用findBooksByBookIds方法时传递的 List<Long> bookId 参数提供。为了将方法参数与查询中的命名参数关联起来，我们使用 @Param 注解：
+        List<Book> findBooksByBookIds(@Param("book_ids") List<Long> bookId);
+
+        @Param("book_ids") 注解告诉Spring Data JPA将方法参数 bookId 的值绑定到JPQL查询中的 :book_ids 参数。这样，在执行查询时，:book_ids 占位符将被替换为实际的书籍ID列表。
+    */
+    @Query("select o from Book o where id in :book_ids")
+    // The purpose of this query is to select and return a list of Book entities from the database based on a list of provided book IDs.
+    List<Book> findBooksByBookIds(@Param("book_ids") List<Long> bookId);
 
 }

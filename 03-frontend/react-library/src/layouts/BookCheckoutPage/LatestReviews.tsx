@@ -14,6 +14,7 @@ export const LatestReviews: React.FC<{
                 <h2>Latest Reviews: </h2>
             </div>
             <div className='col-sm-10 col-md-10'>
+                {/* 使用Fragment组件（或简写形式<>和</>）将子组件包裹起来，而不需要额外的<div>元素。这可以帮助减少不必要的DOM节点，并使组件结构更清晰。 */}
                 {props.reviews.length > 0 ?
                     <>
                         {props.reviews.slice(0, 3).map(eachReview => (

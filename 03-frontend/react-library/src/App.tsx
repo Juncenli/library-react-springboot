@@ -8,10 +8,11 @@ import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { Navbar } from './layouts/NavbarAndFooter/Navbar';
 import { SearchBooksPage } from './layouts/SearchBooksPage/SearchBooksPage';
 import { oktaConfig } from './lib/oktaConfig';
-import { OktaAuth } from '@okta/okta-auth-js';
+import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import LoginWidget from './Auth/LoginWidget';
 import { ReviewListPage } from './layouts/BookCheckoutPage/ReviewListPage/ReviewListPage';
+import { ShelfPage } from './layouts/ShelfPage/ShelfPage';
 
 /* 
     React default port is http://localhost:3000 
@@ -51,6 +52,9 @@ export const App = () => {
     history.replace(toRelativeUrl(originalUri || '/', window.location.origin));
   };
 
+  // check the access token
+  console.log(oktaAuth.authStateManager);
+
 
   return (
     <div className='d-flex flex-column min-vh-100'>
@@ -85,6 +89,12 @@ export const App = () => {
             }
             />
             <Route path='/login/callback' component={LoginCallback} />
+            {/* 
+            The SecureRoute component comes from the @okta/okta-react package. 
+            It is a wrapper around the React Router's Route component that adds an authentication check. 
+            The component ensures that the user is authenticated before rendering the specified route. 
+            */}
+            <SecureRoute path='/shelf'> <ShelfPage /> </SecureRoute>
           </Switch>
         </div>
         <Footer />
@@ -92,7 +102,5 @@ export const App = () => {
     </div>
   );
 }
-function toRelativeUrl(arg0: any, origin: string): import("history").LocationDescriptor<unknown> {
-  throw new Error('Function not implemented.');
-}
+
 
