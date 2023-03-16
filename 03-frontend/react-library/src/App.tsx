@@ -13,6 +13,7 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import LoginWidget from './Auth/LoginWidget';
 import { ReviewListPage } from './layouts/BookCheckoutPage/ReviewListPage/ReviewListPage';
 import { ShelfPage } from './layouts/ShelfPage/ShelfPage';
+import { MessagesPage } from './layouts/MessagesPage/MessagesPage';
 
 /* 
     React default port is http://localhost:3000 
@@ -95,6 +96,7 @@ export const App = () => {
             The component ensures that the user is authenticated before rendering the specified route. 
             */}
             <SecureRoute path='/shelf'> <ShelfPage /> </SecureRoute>
+            <SecureRoute path='/messages'> <MessagesPage/> </SecureRoute>
           </Switch>
         </div>
         <Footer />
