@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 // 用于允许跨域资源共享（CORS）。它可以用于控制Web应用程序如何处理来自其他域的请求，从而实现安全的跨域数据交换。
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://localhost:3000")
 @RestController
 @RequestMapping("/api/books")
 public class BookController {

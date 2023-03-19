@@ -35,3 +35,20 @@ To implement an online book rental website using React for the frontend and Spri
 - Build the frontend and backend into production-ready artifacts.
 - Deploy the backend to a server, such as AWS EC2, Heroku, or DigitalOcean. Set up and configure the database server as needed.
 - Deploy the frontend to a static hosting service, like Netlify, Vercel, or an S3 bucket.
+
+
+
+
+## Some Key Points
+
+### URI and URL
+
+When describing the difference between URIs and URLs in English, we can say:
+
+1. Scope of concept: A URI (Uniform Resource Identifier) is a broader concept that aims to provide a unique identifier for any resource on the internet. A URL (Uniform Resource Locator), on the other hand, is a subset of URIs that not only provides a unique identifier for a resource but also includes location information for finding the resource on the internet. In other words, all URLs are URIs, but not all URIs are URLs.
+
+2. Resource location: A URL contains location information for a resource and describes a way to access the resource through a specific protocol (e.g., HTTP, FTP, etc.). A URI, however, does not necessarily provide location information for a resource; it merely serves to uniquely identify a resource.
+
+3. URN: In addition to URLs, URIs also include another subset called URNs (Uniform Resource Names). URNs are permanent, globally unique, and location-independent identifiers for resources. Thus, a URI can be a URL (a resource identifier with location information) or a URN (a resource identifier without location information).
+
+In short, a URI is a more general concept used to uniquely identify resources on the internet, while a URL is a specific type of URI that includes location information for finding and accessing these resources.

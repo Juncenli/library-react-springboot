@@ -21,7 +21,7 @@ export const Carousel = () => {
     useEffect(() => {
         const fetchBooks = async () => {
 
-            const baseUrl: string = "http://localhost:8080/api/books";
+            const baseUrl: string = `${process.env.REACT_APP_API}/books`;
 
             // In TypeScript to be able to add the baseUrl into url you need to use the back tick ` instead of a single quote '.
             const url: string = `${baseUrl}?page=0&size=9`;

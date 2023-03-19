@@ -48,6 +48,15 @@
 			<version>2.1.6</version>
 		</dependency>
 
+		<!--
+For detailed setup, see our quickstarts at https://stripe.com/docs/development/quickstart
+-->
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>22.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
